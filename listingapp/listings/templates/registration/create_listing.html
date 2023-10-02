@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Listing</title>
+</head>
+<body>
+    <h1>Create a New Listing</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Listing</button>
+    </form>
+    <p><a href="{% url 'listing_list' %}">Back to Listings</a></p>
+
+    <ul>
+        <li><a href="{% url 'listing_list' %}">Home</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'create_listing' %}">Create Listing</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+    </ul>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Listings</title>
+</head>
+<body>
+    <h1>List of Listings</h1>
+    <ul>
+        {% for listing in listings %}
+            <li>
+                <h2><a href="{% url 'listing_detail' listing.pk %}">{{ listing.title }}</a></h2>
+                <p>{{ listing.description }}</p>
+                <p>Price: ${{ listing.price }}</p>
+                <img src="{{ listing.image.url }}" alt="{{ listing.title }}" width="400">
+                <video width="400" height="200" controls>
+                    <source src="{{ listing.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
